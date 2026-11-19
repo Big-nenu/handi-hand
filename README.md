@@ -18,7 +18,7 @@ Construir una capa de hardware independiente y modular para experimentar con:
 - **Automatización:** combinar lecturas de sensores con acciones físicas, siempre con límites y controles.
 - **Expansión futura:** visión mediante cámara, audio y mecanismos más complejos, conforme se validen las pruebas.
 
-Estas son **metas del proyecto**, no funciones implementadas actualmente.
+Estas son **metas del proyecto**. Por ahora, solo se ha validado la programación del ESP32-S3 y el parpadeo de un LED; la conexión con StoneBot sigue pendiente.
 
 ## Relación entre proyectos
 
@@ -56,8 +56,8 @@ No todos los componentes tienen que utilizarse: primero se aprovecha lo que ya e
 
 | Etapa | Prueba | Estado |
 | --- | --- | --- |
-| 1 | Preparar entorno de desarrollo y conectar ESP32-S3 | Pendiente |
-| 2 | Encender y apagar un LED desde el microcontrolador | Pendiente |
+| 1 | Preparar entorno de desarrollo y conectar ESP32-S3 | ✅ Completada (oficina) |
+| 2 | Encender y apagar un LED desde el microcontrolador | ✅ Completada (oficina) |
 | 3 | Leer un botón o una LDR y devolver su valor por serial | Pendiente |
 | 4 | Controlar un servomotor con alimentación adecuada | Pendiente |
 | 5 | Crear comandos simples entre la PC y el ESP32-S3 | Pendiente |
@@ -86,7 +86,26 @@ El proyecto se trabajará **en la oficina y en casa**, desde equipos diferentes.
 
 ## Estado actual
 
-**Fase inicial / planificación.** El inventario está documentado; aún no se declara ninguna prueba física como completada.
+**Fase inicial / pruebas de hardware.** Ya se completó la primera prueba física en la computadora de la oficina.
+
+### Prueba 01 — Parpadeo de LED (19 de noviembre de 2026)
+
+**Resultado: completada.**
+
+- **Placa:** ESP32-S3 N16R8 (16 MB Flash, 8 MB PSRAM).
+- **Entorno:** Windows, VS Code y PlatformIO con framework Arduino.
+- **Conexión:** adaptador USB-serial CH343 detectado en `COM5`.
+- **Código:** alterna HIGH/LOW en GPIO 2 cada segundo y escribe mensajes por serial.
+- **Compilación:** `SUCCESS`.
+- **Carga:** `SUCCESS`; escritura verificada por esptool.
+- **Observación física:** LED rojo encendido de forma fija y LED verde parpadeando.
+- **Conclusión:** se confirmó la detección, compilación, carga y ejecución del firmware. El parpadeo observado es consistente con el control desde GPIO 2.
+
+Proyecto de prueba: [`pruebas/prueba_01_led/`](pruebas/prueba_01_led/).
+
+**Pendiente inmediato:** leer un botón o una LDR y observar sus valores por serial. La integración con StoneBot todavía no se ha realizado.
+
+> El puerto `COM5` corresponde al equipo de oficina: puede cambiar al conectar la placa en otra computadora.
 
 ## Repositorios relacionados
 
