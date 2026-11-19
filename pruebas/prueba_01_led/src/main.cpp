@@ -1,18 +1,19 @@
 #include <Arduino.h>
 
-#define LED_PIN 2
+#define LED_PIN 4
+#define BUTTON_PIN 5
 
 void setup() {
-    pinMode(LED_PIN, OUTPUT);
     Serial.begin(115200);
+
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
 }
 
 void loop() {
-    digitalWrite(LED_PIN, HIGH);
-    Serial.println("LED ENCENDIDO");
-    delay(1000);
+    bool presionado = digitalRead(BUTTON_PIN) == LOW;
 
-    digitalWrite(LED_PIN, LOW);
-    Serial.println("LED APAGADO");
-    delay(1000);
+    digitalWrite(LED_PIN, presionado ? HIGH : LOW);
+
+    delay(20);
 }
